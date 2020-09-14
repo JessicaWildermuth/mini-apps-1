@@ -14,17 +14,20 @@ var addClickEvent = function(elements) {
     //successfully added onclick functionality to each
     //now need to change the function here to a define function that add a specific text to that box
     //write a function that is passed in to the addEventListener
+    //the function needs to only allow one text node in each box
     element.addEventListener('click',  function() {
       //since the first play is always X - x is placed when the count is even
+      if (this.innerText.length !== 0) {
+       return;
+      }
       if (count % 2 == 0) {
         //to add a X to the box, the box should probably have a text node (input box of some sort that can be dynamically changed)
-        var X = document.createTextNode('X');
-        console.log(element)
-        element.append.bind(this)(X);
+        var x = document.createTextNode('X');
+        this.append(x);
         count++;
       } else {  //o is placed when the count is odd
-        var O = document.createTextNode('O');
-        element.append.bind(this)(O);
+        var o = document.createTextNode('O');
+        this.append(o);
         count++;
       }
     });
