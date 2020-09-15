@@ -32,18 +32,7 @@ var updateGameBoard = function(row, col) {
   };
 }
 
-var clearBoard = function() {
-  for (var i = 0; i < gameBoard.length; i++) {
-    //update DOM space with correct value
-    var row = gameBoard[i];
-    for (var j = 0; j < row.length; j++) {
-      //get the i+j id
-      gameBoard[i][j] = 0;
-      var correspondingDOM = document.getElementById(i.toString() + j.toString());
-      correspondingDOM.innerHTML = '';
-    }
-  }
-};
+
 var isAllSame = function(array) {
   if (array.every(function(element) { return element === 'X' })) {
    return "X";
@@ -97,6 +86,19 @@ function renderGameBoard() {
   }
 }
 
+var clearBoard = function() {
+  for (var i = 0; i < gameBoard.length; i++) {
+    //update DOM space with correct value
+    var row = gameBoard[i];
+    for (var j = 0; j < row.length; j++) {
+      //get the i+j id
+      gameBoard[i][j] = 0;
+      var correspondingDOM = document.getElementById(i.toString() + j.toString());
+      correspondingDOM.innerHTML = '';
+    }
+  }
+};
+
 
 
 //CONTROLLER
@@ -113,8 +115,8 @@ for (var i = 0; i < gameBoxes.length; i++) {
     updateGameBoard(row, col);
   });
 }
+
+
 //each gameboard element needs to be clickable
 //when I click, it add an X or and O to the gameboard model array
 //shows the current gameboard mopdel
-
-console.log(gameBoard);

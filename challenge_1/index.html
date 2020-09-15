@@ -4,6 +4,7 @@
   <head>
     <title>Tic-Tac-Toe</title>
     <body>
+      <h2 id='winner'></h2>
       <table style=" width: 50%; border-collapse: collapse; border: 3px solid purple; height: 120px;">
         <thead>
           <tr>
@@ -12,23 +13,24 @@
         </thead>
         <tbody>
           <tr>
-            <td class='target box'  STYLE="border-style:solid; border-width:1px; height: 33%"> </td>
-            <td class='box'  STYLE="border-style:solid; border-width:1px; height: 33%"> </td>
-            <td class='box'  STYLE="border-style:solid; border-width:1px; height: 33%"> </td>
+            <td class='gamebox' id='00'  STYLE="border-style:solid; border-width:1px; height: 33%; width: 33%"> </td>
+            <td id='01' class='gamebox' STYLE="border-style:solid; border-width:1px; height: 33%; width: 33%"> </td>
+            <td id='02'  class='gamebox' STYLE="border-style:solid; border-width:1px; height: 33%; width: 33%"> </td>
           </tr>
           <tr>
-            <td class='box'  STYLE="border-style:solid; border-width:1px; height: 33%"> </td>
-            <td class='box'  STYLE="border-style:solid; border-width:1px; height: 33%"> </td>
-            <td class='box'  STYLE="border-style:solid; border-width:1px; height: 33%"> </td>
+            <td id='10' class='gamebox'  STYLE="border-style:solid; border-width:1px; height: 33%; width: 33%"> </td>
+            <td id='11' class='gamebox' STYLE="border-style:solid; border-width:1px; height: 33%; width: 33%"> </td>
+            <td id='12'  class='gamebox' STYLE="border-style:solid; border-width:1px; height: 33%; width: 33%"> </td>
           </tr>
           <tr>
-            <td class='box'  STYLE="border-style:solid; border-width:1px; height: 33%"> </td>
-            <td class='box'  STYLE="border-style:solid; border-width:1px; height: 33%"> </td>
-            <td class='box'  STYLE="border-style:solid; border-width:1px; height: 33%"> </td>
+            <td id='20' class='gamebox' STYLE="border-style:solid; border-width:1px; height: 33%; width: 33%"> </td>
+            <td id='21' class='gamebox' STYLE="border-style:solid; border-width:1px; height: 33%; width: 33%"> </td>
+            <td id='22'  class='gamebox' STYLE="border-style:solid; border-width:1px; height: 33%; width: 33%"> </td>
           </tr>
         </tbody>
       </table>
-      <script src="app.js"></script>
+      <button id='resetBoard' onclick="clearBoard()">Play Again?</button>
+      <script src="appRefactored.js"></script>
     </body>
   </head>
 </html>
