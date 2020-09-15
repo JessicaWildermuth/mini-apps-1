@@ -1,0 +1,20 @@
+{
+  "name": "mini-app-2",
+  "version": "1.0.0",
+  "description": "mini app ta practice",
+  "main": "server.js",
+  "author": "jessica wildermuth",
+  "license": "ISC",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --ignore node_modules server.js"
+  },
+  "dependencies": {
+    "nodemon": "^2.0.4",
+    "express": "^4.17.1",
+    "express-partials": "^0.3.0"
+  },
+  "devDependencies": {
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
+  }
+}
