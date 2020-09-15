@@ -25,11 +25,37 @@ var updateGameBoard = function(row, col) {
     currentPlayer = 'X';
   }
   renderGameBoard();
+  console.log(checkForWinner());
 }
 
 var checkForWinner = function() {
+  //check if three in a row
+  var winner;
 
-}
+  for (var i = 0; i < gameBoard.length; i++) {
+    var row = gameBoard[i];
+    var column = gameBoard.map(row => row[i]);
+    var rowIsX = row.every(function(element) { return element === 'X' })
+    var columnIsX = column.every(function(element) { return element === 'X' })
+    var rowIsO = row.every(function(element) { return element === 'O' })
+    var columnIsO = column.every(function(element) { return element === 'O' })
+    var majorDiag = [gameBoard[0][0], gameBoard[1][1], gameBoard[2][2]];
+    var minorDiag = [gameBoard[0][2], gameBoard[1][1], gameBoard[2][0]];
+
+    //look if a row has three of a kind
+    if (rowIsX || columnIsX) {
+      winner = 'X';
+      return winner;
+    } else if (rowIsO || columnIsO) {
+      winner = 'O';
+      return winner;
+    }
+  }
+   //look at each column for three of a kind
+    //get every column
+    //for each column check for winner
+   //look if a diagonal has three of kind
+};
 
 //VIEW
 //have a function that renders the values that are in my gameboard array
@@ -43,7 +69,6 @@ function renderGameBoard() {
       //get the i+j id
       var correspondingDOM = document.getElementById(i.toString() + j.toString());
       if (currentCol !== 0) {
-        console.log(currentCol);
         correspondingDOM.innerHTML = currentCol;
       }
     }
