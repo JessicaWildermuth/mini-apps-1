@@ -1,43 +1,122 @@
-//select all boxes in game board
-var gameBoxes = document.getElementsByClassName('box');
+//want to use a 2d model to represent my game board
+//game board is empty to start
+//a zero in the array index indicates no X or O
+
+//MODEL
 
 
-//will rely on a count so there needs to be a global variable of count
-var count = 0;
+var gameBoard = [
+  [0, 0, 0],
+  [0, 0, 0],
+  [0, 0, 0],
+];
 
-
-//create an addListen event and click handler for all boxes (easy to grab using getElementsByClassName)
-//need to map over the array of elements and add an onclick functionality to them all
-var addClickEvent = function(elements) {
-  for (var i = 0; i < elements.length; i++) {
-    var element = elements[i];
-    //successfully added onclick functionality to each
-    //now need to change the function here to a define function that add a specific text to that box
-    //write a function that is passed in to the addEventListener
-    //the function needs to only allow one text node in each box
-    element.addEventListener('click',  function() {
-      //since the first play is always X - x is placed when the count is even
-      if (this.innerText.length !== 0) {
-       return;
-      }
-      if (count % 2 == 0) {
-        //to add a X to the box, the box should probably have a text node (input box of some sort that can be dynamically changed)
-        var x = document.createTextNode('X');
-        this.append(x);
-        count++;
-      } else {  //o is placed when the count is odd
-        var o = document.createTextNode('O');
-        this.append(o);
-        count++;
-      }
-    });
+var currentPlayer = 'X';
+var winner;
+var updateGameBoard = function(row, col) {
+  if (gameBoard[row][col] !== 0) {
+    return;
   }
-}(gameBoxes);
+  //update the gameboard with correct value
+  gameBoard[row][col] = currentPlayer;
+  //update current Player
+  if (currentPlayer === 'X') {
+    currentPlayer = 'O';
+  } else {
+    currentPlayer = 'X';
+  }
+  renderGameBoard();
+  if (checkForWinner()) {
+    var winning = document.getElementById('winner');
+    winning.innerHTML = `The Winner Is ${checkForWinner()}!`
+  };
+}
+
+
+var isAllSame = function(array) {
+  if (array.every(function(element) { return element === 'X' })) {
+   return "X";
+  }  else if (array.every(function(element) { return element === 'O' })) {
+    return "O";
+  }
+};
+
+var checkForWinner = function() {
+  //check if three in a row
+
+
+  for (var i = 0; i < gameBoard.length; i++) {
+    var row = gameBoard[i];
+    var column = gameBoard.map(row => row[i]);
+    var majorDiag = [gameBoard[0][0], gameBoard[1][1], gameBoard[2][2]];
+    var minorDiag = [gameBoard[0][2], gameBoard[1][1], gameBoard[2][0]];
+
+    var possibleWinners = [row, column, majorDiag, minorDiag];
+
+    for (var j = 0; j < possibleWinners.length; j++) {
+      if(isAllSame(possibleWinners[j])) {
+        winner = isAllSame(possibleWinners[j]);
+        return isAllSame(possibleWinners[j]);
+      }
+    }
+    //look if a row has three of a kind
+
+  }
+   //look at each column for three of a kind
+    //get every column
+    //for each column check for winner
+   //look if a diagonal has three of kind
+};
+
+//VIEW
+//have a function that renders the values that are in my gameboard array
+function renderGameBoard() {
+  //for each element in gameboard,
+  for (var i = 0; i < gameBoard.length; i++) {
+    //update DOM space with correct value
+    var currentRow = gameBoard[i];
+    for (var j = 0; j < currentRow.length; j++) {
+      var currentCol = currentRow[j];
+      //get the i+j id
+      var correspondingDOM = document.getElementById(i.toString() + j.toString());
+      if (currentCol !== 0) {
+        correspondingDOM.innerHTML = currentCol;
+      }
+    }
+  }
+}
+
+var clearBoard = function() {
+  for (var i = 0; i < gameBoard.length; i++) {
+    //update DOM space with correct value
+    var row = gameBoard[i];
+    for (var j = 0; j < row.length; j++) {
+      //get the i+j id
+      gameBoard[i][j] = 0;
+      var correspondingDOM = document.getElementById(i.toString() + j.toString());
+      correspondingDOM.innerHTML = '';
+    }
+  }
+};
 
 
 
+//CONTROLLER
+var gameBoxes = document.getElementsByClassName('gamebox');
+for (var i = 0; i < gameBoxes.length; i++) {
+  var gamebox = gameBoxes[i];
+  gamebox.addEventListener('click', function() {
+    //add the right value to gameboard model
+      //access the game model row and col
+      var id = this.id;
+      var row = Number(id[0]);
+      var col = Number(id[1]);
+    //update my game model
+    updateGameBoard(row, col);
+  });
+}
 
 
-
-//successfuly grabbed all the boxes
-//now loop through the array of html elements and add an event listen to each
+//each gameboard element needs to be clickable
+//when I click, it add an X or and O to the gameboard model array
+//shows the current gameboard mopdel
