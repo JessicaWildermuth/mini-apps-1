@@ -4,6 +4,7 @@
 
 //MODEL
 
+
 var gameBoard = [
   [0, 0, 0],
   [0, 0, 0],
@@ -11,7 +12,7 @@ var gameBoard = [
 ];
 
 var currentPlayer = 'X';
-
+var winner;
 var updateGameBoard = function(row, col) {
   if (gameBoard[row][col] !== 0) {
     return;
@@ -25,31 +26,52 @@ var updateGameBoard = function(row, col) {
     currentPlayer = 'X';
   }
   renderGameBoard();
-  console.log(checkForWinner());
+  if (checkForWinner()) {
+    var winning = document.getElementById('winner');
+    winning.innerHTML = `The Winner Is ${checkForWinner()}!`
+  };
 }
+
+var clearBoard = function() {
+  for (var i = 0; i < gameBoard.length; i++) {
+    //update DOM space with correct value
+    var row = gameBoard[i];
+    for (var j = 0; j < row.length; j++) {
+      //get the i+j id
+      gameBoard[i][j] = 0;
+      var correspondingDOM = document.getElementById(i.toString() + j.toString());
+      correspondingDOM.innerHTML = '';
+    }
+  }
+};
+var isAllSame = function(array) {
+  if (array.every(function(element) { return element === 'X' })) {
+   return "X";
+  }  else if (array.every(function(element) { return element === 'O' })) {
+    return "O";
+  }
+};
 
 var checkForWinner = function() {
   //check if three in a row
-  var winner;
+
 
   for (var i = 0; i < gameBoard.length; i++) {
     var row = gameBoard[i];
     var column = gameBoard.map(row => row[i]);
-    var rowIsX = row.every(function(element) { return element === 'X' })
-    var columnIsX = column.every(function(element) { return element === 'X' })
-    var rowIsO = row.every(function(element) { return element === 'O' })
-    var columnIsO = column.every(function(element) { return element === 'O' })
     var majorDiag = [gameBoard[0][0], gameBoard[1][1], gameBoard[2][2]];
     var minorDiag = [gameBoard[0][2], gameBoard[1][1], gameBoard[2][0]];
 
-    //look if a row has three of a kind
-    if (rowIsX || columnIsX) {
-      winner = 'X';
-      return winner;
-    } else if (rowIsO || columnIsO) {
-      winner = 'O';
-      return winner;
+    var possibleWinners = [row, column, majorDiag, minorDiag];
+
+    for (var j = 0; j < possibleWinners.length; j++) {
+      if(isAllSame(possibleWinners[j])) {
+        winner = isAllSame(possibleWinners[j]);
+        return isAllSame(possibleWinners[j]);
+      }
     }
+    //look if a row has three of a kind
+
   }
    //look at each column for three of a kind
     //get every column
