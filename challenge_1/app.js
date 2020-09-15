@@ -27,8 +27,12 @@ var updateGameBoard = function(row, col) {
   }
   renderGameBoard();
   if (checkForWinner()) {
-    var winning = document.getElementById('winner');
-    winning.innerHTML = `The Winner Is ${checkForWinner()}!`
+    var winning = document.createElement('div');
+    winning.setAttribute('id', 'winner');
+    winning.innerHTML = `The Winner Is ${checkForWinner()}!`;
+    var element = document.getElementsByTagName('div');
+    console.log(element);
+    element[0].append(winning);
   };
 }
 
@@ -97,6 +101,8 @@ var clearBoard = function() {
       correspondingDOM.innerHTML = '';
     }
   }
+  var span = document.getElementById('winner');
+  span.remove();
 };
 
 

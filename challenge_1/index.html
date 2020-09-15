@@ -2,10 +2,13 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link href="style.css" rel='stylesheet'>
     <title>Tic-Tac-Toe</title>
     <body>
-      <h2 id='winner'></h2>
-      <table style=" width: 50%; border-collapse: collapse; border: 3px solid purple; height: 120px;">
+      <div>
+        <span id="winner"></span>
+      </div>
+      <table>
         <thead>
           <tr>
             <th colspan="3">Tic-Tac-Toe Game Board</th>
@@ -13,19 +16,19 @@
         </thead>
         <tbody>
           <tr>
-            <td class='gamebox' id='00'  STYLE="border-style:solid; border-width:1px; height: 33%; width: 33%"> </td>
-            <td id='01' class='gamebox' STYLE="border-style:solid; border-width:1px; height: 33%; width: 33%"> </td>
-            <td id='02'  class='gamebox' STYLE="border-style:solid; border-width:1px; height: 33%; width: 33%"> </td>
+            <td id='00' class='gamebox'> </td>
+            <td id='01' class='gamebox'> </td>
+            <td id='02' class='gamebox'> </td>
           </tr>
           <tr>
-            <td id='10' class='gamebox'  STYLE="border-style:solid; border-width:1px; height: 33%; width: 33%"> </td>
-            <td id='11' class='gamebox' STYLE="border-style:solid; border-width:1px; height: 33%; width: 33%"> </td>
-            <td id='12'  class='gamebox' STYLE="border-style:solid; border-width:1px; height: 33%; width: 33%"> </td>
+            <td id='10' class='gamebox'> </td>
+            <td id='11' class='gamebox'> </td>
+            <td id='12' class='gamebox'> </td>
           </tr>
           <tr>
-            <td id='20' class='gamebox' STYLE="border-style:solid; border-width:1px; height: 33%; width: 33%"> </td>
-            <td id='21' class='gamebox' STYLE="border-style:solid; border-width:1px; height: 33%; width: 33%"> </td>
-            <td id='22'  class='gamebox' STYLE="border-style:solid; border-width:1px; height: 33%; width: 33%"> </td>
+            <td id='20' class='gamebox'> </td>
+            <td id='21' class='gamebox'> </td>
+            <td id='22' class='gamebox'> </td>
           </tr>
         </tbody>
       </table>
