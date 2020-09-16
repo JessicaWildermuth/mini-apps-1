@@ -1,0 +1,83 @@
+
+connecting a db to the server
+//create tables
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Cannot use import statement outside a module
+  //is app.jsx not a module?
+  //tried using type: module in package.json - why didnt this work? What problem does that solve?
+  //added a type="module" to the script tag
+    //new error - cors
+    //says that since Im running from the filesystem, I cant just get the script (counts it as cross origin)
+    //perhpas using the server
+    //running through server, getting error 404 not found
+    //the broswer is using a get request for the file in the script tage
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1.) React is not rendering
+   a. Not attached to the correct div id
+   b. not transpiling
+   c. the file containing my react code is not getting into the browser  -> yes, had put type= text into script tag and it was not a text file nor the browser care to read that
