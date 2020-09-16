@@ -13,12 +13,21 @@ app.use(express.static('client'))
 
 
 app.post(('/'), (req, res) => {
-  var csvFile = parseJSON(JSON.parse(req.body['cvs-report']));
+  //what type of content header do I get when dealing with a file instead of text?
+  //same as before, so I am using the correct body parser
+  //what does the data look like?
+  //the body has a property value of a string of the file name
+  //how do I read the file?
+  //read directions - told to refactor requests
+  var fileContent = fs.readFileSync('/Users/jwildermuth/hackreactor/hrsf130-mini-apps-1/challenge_2/samples/sales_report.json', (err, data) => {
+    if (error) {
+      return error;
+    } else {
+      return data;
+    }
+  });
+  var csvFile = parseJSON(JSON.parse(fileContent.toString()));
   var formAndCsv = combineCsvHtml(csvFile);
-  // res.send(csvFile);
-  // res.sendFile('/Users/jwildermuth/hackreactor/hrsf130-mini-apps-1/challenge_2/client/index.html');
-  //sned the csvfile AND the html stirng
-  //how does my html string add csvfile to the innards of itself
   res.send(formAndCsv);
 })
 

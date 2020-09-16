@@ -9,9 +9,10 @@ var combineCsvHtml = function(csv) {
         <h1>CVS Report Generator</h1>
         <form method="post">
           <label>Submit Report</label>
-          <textarea type="textarea" name="cvs-report" id="cvs-report" required>${csv}</textarea>
+          <input type="file" name="csv-report" id="csv-report" accept=".json" required>
           <input type="submit" value="Submit CVS File">
         </form>
+        <span>${csv}</span>
       </div>
     </body>
 </html>`;
