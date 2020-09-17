@@ -14,14 +14,38 @@ class App extends React.Component {
         [0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0]
-      ]
+      ],
+      player: 'yellow'
     };
     this.handleClick = this.handleClick.bind(this)
   }
 
   handleClick(event) {
     console.log('Clicked!');
-    console.log(this)
+    console.log(event.target.id)
+    var id = event.target.id
+    var row = id[0];
+    var col = id[1];
+    if (this.state.board[row][col] === 0) {
+      if (this.state.player === 'yellow') {
+        var newBoard = this.state.board;
+        newBoard[row][col] = 1;
+        this.setState({
+          board: newBoard,
+          player: 'red'
+        })
+      } else {
+        var newBoard = this.state.board;
+        newBoard[row][col] = 2;
+        this.setState({
+          board: newBoard,
+          player: 'yellow'
+        })
+      }
+    }
+    console.log(row, col, 'ROW AND COL')
+    //need to change the state of the correct board array
+
   }
 
   render() {

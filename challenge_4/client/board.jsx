@@ -8,26 +8,4 @@ var Board = (props) => (
   </table>
 );
 
-// class Board extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state ={
-//     }
-//     this.handleClick = this.handleClick.bind(this);
-//   }
-//   handleClick(event) {
-//     console.log('Clicked!');
-//     console.log(this)
-//   }
-//   render() {
-//     return (
-//       <table>
-//         <tbody>
-//           {this.props.rows.map((row) => <tr key={row}>{this.props.columns.map((col) => <td key={col} onClick={this.handleClick}></td>)}</tr>)}
-//         </tbody>
-//       </table>
-//     )
-//   }
-// }
-
 export default Board;
