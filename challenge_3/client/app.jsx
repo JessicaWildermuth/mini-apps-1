@@ -15,7 +15,7 @@ class App extends React.Component {
     this.handleFirstNext = this.handleFirstNext.bind(this);
     this.handleSecondNext = this.handleSecondNext.bind(this);
     this.handleLastClick =  this.handleLastClick.bind(this);
-    this.handlePurchase = this.handlePurchase.bind(this);
+    // this.handlePurchase = this.handlePurchase.bind(this);
   }
 
   handleCheckOut(event) {
@@ -31,6 +31,7 @@ class App extends React.Component {
       formOne: false,
       formTwo: true
     })
+    document.getElementById('formOne').submit();
   }
 
   handleSecondNext(event) {
@@ -40,6 +41,7 @@ class App extends React.Component {
       formTwo: false,
       formThree: true
     })
+    document.getElementById('formTwo').submit();
   }
 
   handleLastClick(event) {
@@ -50,14 +52,15 @@ class App extends React.Component {
       formThree: false,
       allFormsCompleted: true
     })
+    document.getElementById('formThree').submit();
   }
 
-  handlePurchase(event) {
-    event.preventDefault();
-    this.setState({
-      allFormsCompleted: false
-    })
-  }
+  // handlePurchase(event) {
+  //   event.preventDefault();
+  //   this.setState({
+  //     allFormsCompleted: false
+  //   })
+  // }
 
   render() {
     return (
@@ -76,26 +79,31 @@ class App extends React.Component {
   }
 }
 
+//need to make the next button also post a request
+//sending a post request
+//now need to just see if when I respond, I go to the correct page
+//goes to the correct page and sends a post request
 var FormOne = (props) => (
-  <form >
+  <form method="POST" id="formOne" onSubmit={props.handleClick}>
     <p>
     <label>Name:</label>
-    <input type="text" id="name" name="user_name"></input>
+    <input type="text" id="name" name="name"></input>
     </p>
     <p>
     <label>E-mail:</label>
-    <input type="email" id="mail" name="user_email"></input>
+    <input type="email" id="mail" name="email"></input>
     </p>
     <p>
     <label>Password:</label>
-    <textarea type="password" id="password" name="user_password"></textarea>
+    <textarea type="password" id="password" name="password"></textarea>
     </p>
-    <button onClick={props.handleClick}>Next</button>
+   {/* <button onClick={props.handleClick}>Next</button> */}
+   <button onClick={props.handleClick}>Next</button>
 </form>
 );
 
 var FormTwo = (props) => (
-  <form >
+  <form  id="formTwo" method='POST'>
     <p>
     <label>Line One:</label>
     <input type="text" id="lineOne" name="lineOne"></input>
@@ -123,12 +131,10 @@ var FormTwo = (props) => (
     <button onClick={props.handleClick}>Next</button>
 </form>
 );
-var Checkout = (props) => (
-  <button onClick={props.handleClick}>Check Out</button>
-);
+
 
 var FormThree = (props) => (
-  <form >
+  <form id="formThree" method='POST'>
     <p>
     <label>Credit Card Number:</label>
     <input type="number" id="ccNumber" name="ccNumber"></input>
@@ -146,7 +152,7 @@ var FormThree = (props) => (
     <textarea type="number" id="billingzip" name="billingzip"></textarea>
     </p>
     <button onClick={props.handleClick}>Next</button>
-</form>
+  </form>
 );
 
 var Confirmation = (props) => (
@@ -154,6 +160,10 @@ var Confirmation = (props) => (
   <p>All form Data / User data from the db should be here</p>
   <button onClick={props.handleClick}>Purchase</button>
   </div>
+);
+
+var Checkout = (props) => (
+  <button onClick={props.handleClick}>Check Out</button>
 );
 
 ReactDOM.render(
