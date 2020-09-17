@@ -14,26 +14,27 @@ var db = mysql.createConnection({
 
 db.connect()
 
-app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.json())
 app.use(express.static('public'));
 app.use(express.static('compiled'))
 
 app.post('/', (req, res) => {
-  if(req.body.name) {
-    var params = [req.body.name, req.body.email, req.body.password];
-    db.query('INSERT INTO users (username, email, passwords) VALUES (?, ?, ?)', params , (error, data) => {
-      if(error) {
-        res.send(error);
-      } else {
-        console.log(data);
-      }
-    })
-  }
-  // } else if (req.body.city) {
-  //   console.log(req.body);
-  //   var params = []
-  // }
-})
+  db.query(`INSERT INTO users (username, email, passwords, addressLineOne, addressLineTwo, city, stateof, zip, phone, creditcardNumber, expiration, cvv, billingzip) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, req.body.values , (error, data) => {
+    if(error) {
+      console.log(error);
+      res.send(error);
+    } else {
+      db.query(`SELECT * FROM users WHERE username = "${req.body.values[0]}"`, (error, userdata) => {
+        if (error) {
+          console.log(error)
+        } else {
+          res.send(JSON.stringify(userdata[userdata.length - 1]));
+        }
+      })
+    }
+  })
+});
+
 
 
 app.listen(port, () => {
