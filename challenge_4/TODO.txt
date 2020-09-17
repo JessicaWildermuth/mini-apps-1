@@ -1,0 +1,18 @@
+Set up webpack for server
+where do I store it/ aka what is the standard file name
+create my server using express
+create main app component
+create board componenet
+each box has to have an onclick function
+so first set up a handle click function
+handleClick function not working
+did I pass it down correctly?
+did I set it correctly on each row?
+did I write the function correctly?
+
+
+
+
+
+
+

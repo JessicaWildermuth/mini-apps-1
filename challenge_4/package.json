@@ -1,0 +1,26 @@
+{
+  "name": "connect-4",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "build": "webpack -w",
+    "listen": "nodemon --ignore node_modules server"
+  },
+  "dependencies": {
+    "@babel/preset-react": "^7.10.4",
+    "react": "^16.8.6",
+    "react-dom": "^16.13.1",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "express": "^4.17.1",
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-react": "^1.0.0",
+    "babel-preset-react": "^6.24.1",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  }
+}
