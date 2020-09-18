@@ -41,7 +41,7 @@ class App extends React.Component {
       .catch((error) => console.log(error));
     }
     this.setState((state) => {
-      return {form: state.form === 5 ? 0 : state.form + 1}
+      return {form: state.form === 4 ? 0 : state.form + 1}
     })
   }
 
@@ -60,9 +60,7 @@ class App extends React.Component {
         ? <FormTwo handleClick={this.handleClick} handleChange={this.handleChange} input={this.state}/>
         : this.state.form === 3
         ? <FormThree handleClick={this.handleClick} handleChange={this.handleChange} input={this.state}/>
-        : this.state.form === 4
-        ? <WaitForConfirmation handleClick={this.handleClick}/>
-        : this.state.form === 5
+        : this.state.finalData
         ? <Confirmation handleClick={this.handleClick} handleChange={this.handleChange} finalDataFields={Object.keys(this.state.finalData)} finalDataValues={Object.values(this.state.finalData)}/>
         : <Checkout handleClick={this.handleClick}/>}
       </div>
