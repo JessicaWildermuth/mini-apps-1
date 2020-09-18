@@ -2,7 +2,7 @@ table {
   table-layout: fixed;
   width: 100%;
   border-collapse: collapse;
-  border: 5px solid blue;
+  border: 15px solid blue;
 }
 
 td {

@@ -25,7 +25,6 @@ class App extends React.Component {
     var id = event.target.id
     var row = id[0];
     var col = id[1];
-    //need to check if all the lower rows at the same column are filled yet
     for (var i = this.state.board.length - 1; i >= 0; i--) {
       if (this.state.board[i][col] === 0) {
         if (this.state.player === 'yellow') {
@@ -47,10 +46,61 @@ class App extends React.Component {
         }
       }
     }
+    this.checkForWinner()
   }
 
   checkForWinner() {
     //check for winner needs to a have a direct row, col, minor diag, or major diag of 4 of the same
+    //see if there is a path of 4 of same digit other than zero in any direction or way
+    if (this.checkRowsYellowForWinner()) {
+      this.setState({
+        winner: "yellow"
+      })
+    }
+    console.log(this.checkRowsRedForWinner);
+    if (this.checkRowsRedForWinner()) {
+      this.setState({
+        winner: "red"
+      })
+    }
+  }
+
+  checkRowsYellowForWinner() {
+   //need to see if four in a row are the same color
+    for (var i = 0; i < this.state.board.length; i++) {
+      var row = this.state.board[i];
+      if (row[0] === 1 && row[1] === 1 && row[2] === 1 && row[3] === 1) {
+        return true;
+      } else if(row[1] === 1 && row[2] === 1 && row[3] === 1 && row[4] === 1) {
+        return true;
+      } else if(row[2] === 1 && row[3] === 1 && row[4] === 1 && row[5] === 1) {
+        return true;
+      }  else if(row[3] === 1 && row[4] === 1 && row[5] === 1 && row[6] === 1) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  checkRowsRedForWinner() {
+    //need to see if four in a row are the same color
+    for (var i = 0; i < this.state.board.length; i++) {
+      var row = this.state.board[i];
+      if (row[0] === 2 && row[1] === 2 && row[2] === 2 && row[3] === 2) {
+        return true;
+      } else if (row[2] === 2 && row[2] === 2 && row[3] === 2 && row[4] === 2) {
+        return true;
+      } else if (row[2] === 2 && row[3] === 2 && row[4] === 2 && row[5] === 2) {
+        return true;
+      }  else if (row[3] === 2 && row[4] === 2 && row[5] === 2 && row[6] === 2) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  checkColumnsYellowForWinner() {
+
   }
 
   render() {
