@@ -22,30 +22,35 @@ class App extends React.Component {
 
   handleClick(event) {
     console.log('Clicked!');
-    console.log(event.target.id)
     var id = event.target.id
     var row = id[0];
     var col = id[1];
-    if (this.state.board[row][col] === 0) {
-      if (this.state.player === 'yellow') {
-        var newBoard = this.state.board;
-        newBoard[row][col] = 1;
-        this.setState({
-          board: newBoard,
-          player: 'red'
-        })
-      } else {
-        var newBoard = this.state.board;
-        newBoard[row][col] = 2;
-        this.setState({
-          board: newBoard,
-          player: 'yellow'
-        })
+    //need to check if all the lower rows at the same column are filled yet
+    for (var i = this.state.board.length - 1; i >= 0; i--) {
+      if (this.state.board[i][col] === 0) {
+        if (this.state.player === 'yellow') {
+          var newBoard = this.state.board;
+          newBoard[i][col] = 1;
+          this.setState({
+            board: newBoard,
+            player: 'red'
+          })
+          break;
+        } else {
+          var newBoard = this.state.board;
+          newBoard[i][col] = 2;
+          this.setState({
+            board: newBoard,
+            player: 'yellow'
+          })
+          break;
+        }
       }
     }
-    console.log(row, col, 'ROW AND COL')
-    //need to change the state of the correct board array
+  }
 
+  checkForWinner() {
+    //check for winner needs to a have a direct row, col, minor diag, or major diag of 4 of the same
   }
 
   render() {
